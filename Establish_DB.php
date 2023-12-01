@@ -3,10 +3,10 @@
     
     // establish the database
     // change permissions as needed
-    $conn=mysqli_connect("localhost", "root", "default","");
+    $conn=mysqli_connect("localhost", "test", "test","");
 
-    $drop_db = "DROP DATABASE BookNerds"; /////// delete these after
-    mysqli_query($conn, $drop_db); /////     delete these after*/
+    //$drop_db = "DROP DATABASE BookNerds"; /////// delete these after
+    //mysqli_query($conn, $drop_db); /////     delete these after*/
     if (!$conn)
 	{	
 		echo " Cannot connect" . mysqli_error();
