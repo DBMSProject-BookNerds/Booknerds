@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookNerds</title>
+    <script src="https://kit.fontawesome.com/9a04c14e05.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section class="header">
+        <nav>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="search.html">SEARCH</a></li>
+                    <li><a href="checkout.html">CHECKOUT</a></li>
+                    <li><a href="reports.html">REPORTS</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+
+        <div class="text-box">
+            <h1>Welcome to BookNerds!</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+            <h3>Skills</h3>
+            <ul>
+                <li>HTML</li>
+                <li>HTML</li>
+                <li>HTML</li>
+                <li>HTML</li>
+            </ul>
+            </p>
+            <a href="About.html" class="hero-btn">Learn More</a>
+        </div>
+
+        <section class="footer">
+            <h1>Contact Me</h1>
+            <div class="icons" id="icons">
+                <a href="">
+                    <i class="fa-brands fa-facebook-square"></i>
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-instagram-square"></i>
+                </a>
+            </div>
+        </section>
+        <script>
+            var navLinks = document.getElementById("navLinks")
+            function showMenu() {
+                navLinks.style.right = "0";
+            }
+            function hideMenu() {
+                navLinks.style.right = "-200px";
+            }
+        </script>
+</body>
+
+</html>
