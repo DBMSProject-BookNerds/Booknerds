@@ -127,8 +127,40 @@
     }
 
     function insert_dummy_data($conn){
-        //echo "insert_dummy_data called";
-        //$sql_insert_customer = "insert into Customer";
+        // insert dummy customers
+        $sql_insert_customer = "insert into Customer VALUES
+        (1,\"Garrett\", \"King\", \"gking@outlook.com\",\"832-190-7631\",\"760 Street Road\",\"Nacogdoches\",\"Texas\",\"75961\"),
+        (2,\"Tim\", \"Kaufman\", \"tkaufman@gmail.com\",\"713-782-0912\",\"8989 Pearl Street\",\"Nacogdoches\",\"Texas\",\"75961\"),
+        (3,\"Emily\", \"Morgan\", \"memily@outlook.com\",\"832-098-6580\",\"5642 North Street\",\"Nacogdoches\",\"Texas\",\"75961\"),
+        (4,\"Clifford\", \"Amomo\", \"aclifford@yahoo.com\",\"670-987-5675\",\"8794 Austin Road\",\"Nacogdoches\",\"Texas\",\"75961\")";
 
+        try{
+            mysqli_query($conn, $sql_insert_customer);
+        }
+        catch (exception $e){
+            echo $e->getmessage();
+        }
+
+        // insert into bookstore
+
+        // insert into orders
+
+        // insert into author
+
+        // insert into genre
+        
+        // insert into book
+        $sql_insert_book = "insert into Book VALUES
+        (1,\"Murder on the Orient Express\",\"Murder on the Orient Express is a work of detective fiction by English writer Agatha Christie featuring the Belgian detective Hercule Poirot. It was first published in the United Kingdom by the Collins Crime Club on 1 January 1934.\",
+        19.99,1,1,\"1934-01-01\",1,9780062073495,20)";
+
+        try{
+            mysqli_query($conn, $sql_insert_book);
+        }
+        catch (exception $e){
+            echo $e->getmessage();
+        }
+
+        // insert into order details
     }
 ?>
