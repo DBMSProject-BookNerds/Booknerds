@@ -29,7 +29,6 @@ if (!empty($_POST)) {
     mysqli_close($conn);
 }
 else {
-    echo "post is empty";
 }
 
 function search(){
