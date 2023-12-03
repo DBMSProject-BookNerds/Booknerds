@@ -5,7 +5,7 @@
         
         // establish the database
         // change permissions as needed
-        $conn=mysqli_connect("localhost", "test", "test","");
+        $conn=mysqli_connect("localhost", "root", "default","");
 
         //$drop_db = "DROP DATABASE BookNerds"; /////// delete these after
         //mysqli_query($conn, $drop_db); /////     delete these after*/
@@ -156,12 +156,12 @@
 
         // insert into orders
         $sql_insert_orders = "insert into orders VALUES
-        (1,1,\"2023-09-15\",53.84),
-        (2,1,\"2023-08-23\",20.23),
-        (3,2,\"2023-09-01\",30.39),
-        (4,3,\"2023-05-05\",19.95),
-        (5,3,\"2023-09-18\",89.82),
-        (6,3,\"2023-09-26\",30.71)";
+        (1,1,\"2023-09-15\",39.98),
+        (2,1,\"2023-08-23\",59.98),
+        (3,2,\"2023-09-01\",29.99),
+        (4,3,\"2023-05-05\",16.99),
+        (5,3,\"2023-09-18\",19.99),
+        (6,3,\"2023-09-26\",77.97)";
 
         try{
             mysqli_query($conn, $sql_insert_orders);         
