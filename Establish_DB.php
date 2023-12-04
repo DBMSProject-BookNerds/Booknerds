@@ -9,7 +9,7 @@
         // change permissions as needed
         try
         {
-        $conn = @mysqli_connect("localhost", "root", "default","");
+        $conn = @mysqli_connect("localhost", "test", "test","");
         $string_result .= " connected successfully";
 		}
 		catch (exception $e) {
@@ -39,7 +39,7 @@
             mysqli_select_db($conn, 'BookNerds');
 
             // create the tables
-            $table = array("CREATE TABLE Bookstore
+            $table = array("CREATE TABLE bookstore
                             (bookstoreID int NOT NULL AUTO_INCREMENT,
                             bookstoreName varchar(50),
                             city varchar(50),
@@ -49,7 +49,7 @@
                             phone varchar(20),
                             PRIMARY KEY(bookstoreID))",
 
-                            "CREATE TABLE Customer
+                            "CREATE TABLE customer
                             (customerID int NOT NULL AUTO_INCREMENT,
                             firstName varchar(20),
                             lastName varchar(20),
@@ -61,52 +61,52 @@
                             postalCode int,
                             PRIMARY KEY (customerID))",
                             
-                            "CREATE TABLE Orders
+                            "CREATE TABLE orders
                             (orderID int NOT NULL AUTO_INCREMENT,
                             customerID int,
-                            FOREIGN KEY (customerID) REFERENCES Customer(customerID),
+                            FOREIGN KEY (customerID) REFERENCES customer(customerID),
                             orderDate date,
                             totalPrice decimal(10, 2),
                             PRIMARY KEY(orderID))",
 
-                            "CREATE TABLE Author
+                            "CREATE TABLE author
                             (authorID int NOT NULL AUTO_INCREMENT,
                             firstName varchar(50),
                             lastName varchar(50),
                             descr varchar(500),
                             PRIMARY KEY (authorID))",
 
-                            "CREATE TABLE Genre
+                            "CREATE TABLE genre
                             (genreID int NOT NULL AUTO_INCREMENT,
                             genreName varchar(20),
                             PRIMARY KEY (genreID))",
 
-                            "CREATE TABLE Book
+                            "CREATE TABLE book
                             (bookID int NOT NULL AUTO_INCREMENT,
                             title varchar(250),
                             descr varchar(500),
                             price decimal(10, 2),
                             authorID int,
-                            FOREIGN KEY (authorID) REFERENCES Author(authorID),
+                            FOREIGN KEY (authorID) REFERENCES author(authorID),
                             bookstoreID int,
-                            FOREIGN KEY (bookstoreID) REFERENCES Bookstore(bookstoreID),
+                            FOREIGN KEY (bookstoreID) REFERENCES bookstore(bookstoreID),
                             publicationDate date,
                             genreID int,
-                            FOREIGN KEY (genreID) REFERENCES Genre(genreID),
+                            FOREIGN KEY (genreID) REFERENCES genre(genreID),
                             isbn varchar(30),
                             stock int,
                             PRIMARY KEY (bookID))",
 
-                            "CREATE TABLE OrderDetails
+                            "CREATE TABLE orderDetails
                             (orderDetailsID int NOT NULL AUTO_INCREMENT,
                             orderID int,
-                            FOREIGN KEY (orderID) REFERENCES Orders(orderID),
+                            FOREIGN KEY (orderID) REFERENCES orders(orderID),
                             bookstoreID int,
-                            FOREIGN KEY (bookstoreID) REFERENCES Bookstore(bookstoreID),
+                            FOREIGN KEY (bookstoreID) REFERENCES bookstore(bookstoreID),
                             quantity int,
                             orderType varchar(30),
                             bookID int,
-                            FOREIGN KEY (bookID) REFERENCES Book(bookID),
+                            FOREIGN KEY (bookID) REFERENCES book(bookID),
                             PRIMARY KEY (orderDetailsID))"
                             );
             
@@ -135,16 +135,17 @@
 
         //create test data as needed.
         if($create_data){
-            insert_dummy_data($conn);
+			$string_result .= insert_dummy_data($conn, $string_result);
         }
         mysqli_close($conn);
 
 		return $string_result;
     }
 
-    function insert_dummy_data($conn){
+    function insert_dummy_data($conn, $string_result){
+      
         // insert dummy customers
-        $sql_insert_customer = "insert into Customer VALUES
+        $sql_insert_customer = "insert into customer VALUES
         (1,\"Garrett\", \"King\", \"gking@outlook.com\",\"832-190-7631\",\"760 Street Road\",\"Nacogdoches\",\"Texas\",75961),
         (2,\"Tim\", \"Kaufman\", \"tkaufman@gmail.com\",\"713-782-0912\",\"8989 Pearl Street\",\"Nacogdoches\",\"Texas\",75961),
         (3,\"Emily\", \"Morgan\", \"memily@outlook.com\",\"832-098-6580\",\"5642 North Street\",\"Nacogdoches\",\"Texas\",75961),
@@ -221,7 +222,7 @@
         }
         
         // insert into book
-        $sql_insert_book = "insert into Book VALUES
+        $sql_insert_book = "insert into book VALUES
         (1,\"Murder on the Orient Express\",\"Murder on the Orient Express is a work of detective fiction by English writer Agatha Christie featuring the Belgian detective Hercule Poirot. It was first published in the United Kingdom by the Collins Crime Club on 1 January 1934.\",
         19.99,1,1,\"1934-01-01\",1,9780062073495,20),
         (2,\"The Mysterious Affair at Styles\",\"The Mysterious Affair at Styles is the first detective novel by British writer Agatha Christie, introducing her fictional detective Hercule Poirot.\",
@@ -260,5 +261,6 @@
             $string_result .= "| " . $e->getmessage();
             return $string_result;
         }
+        return $string_result;
     }
 ?>

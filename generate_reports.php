@@ -1,13 +1,13 @@
 <?php
 //this report shows the customers who bought the book "The Daughter of Time" in September 2023.
 function report1() {
-    $conn = @mysqli_connect("localhost", "root", "default", "");
+    $conn = @mysqli_connect("localhost", "test", "test", "");
     mysqli_select_db($conn, 'BookNerds');
     $query = "select customer.firstName, customer.lastName, customer.postalCode 
-              from customer, orders, orderdetails, book
+              from customer, orders, orderDetails, book
               where(customer.customerID = orders.customerID and
-              orders.orderID = orderdetails.orderID and
-              book.bookID = orderdetails.bookID and
+              orders.orderID = orderDetails.orderID and
+              book.bookID = orderDetails.bookID and
               book.title = 'The Daughter of Time' and
               orders.orderDate between '2023-09-01' and '2023-09-30')";
     $result= mysqli_query($conn, $query);
@@ -34,11 +34,11 @@ function report1() {
 
 //this report shows the highest selling authors in our database
 function report2() {
-    $conn = mysqli_connect("localhost", "root", "default", "");
+    $conn = mysqli_connect("localhost", "test", "test", "");
     mysqli_select_db($conn, 'BookNerds');
     $query = "select CONCAT(author.firstName, ' ', author.lastName) as 'Name', SUM(book.price * orderDetails.quantity) as 'Total Sales'
     from orderDetails, author, book
-    where(orderdetails.bookID = book.bookID and
+    where(orderDetails.bookID = book.bookID and
     book.authorID = author.authorID)
     group by CONCAT(author.firstName, ' ', author.lastName)
     order by SUM(book.price) desc;";
@@ -61,13 +61,13 @@ function report2() {
 
 // this report shows the highest selling bookstores in our database
 function report3() {
-    $conn = mysqli_connect("localhost", "root", "default", "");
+    $conn = mysqli_connect("localhost", "test", "test", "");
     mysqli_select_db($conn, 'BookNerds');
     $query = "select bookstore.bookstoreName as 'Store Name', SUM(book.price * orderDetails.quantity) as 'Total Sales'
     from orderDetails, book, bookstore
     where(
-    orderdetails.bookstoreID = bookstore.bookstoreID and
-    orderdetails.bookID = book.bookID)
+    orderDetails.bookstoreID = bookstore.bookstoreID and
+    orderDetails.bookID = book.bookID)
     group by bookstore.bookstoreName
     order by SUM(book.price * orderDetails.quantity) desc;";
 
@@ -89,7 +89,7 @@ function report3() {
 
 // this report shows the total revenue of the company, as well as the largest contributors towards it.
 function report4() {
-    $conn = mysqli_connect("localhost", "root", "default", "");
+    $conn = mysqli_connect("localhost", "test", "test", "");
     mysqli_select_db($conn, 'BookNerds');
 
     $total_revenue = "select SUM(totalPrice) as 'Total Revenue'
