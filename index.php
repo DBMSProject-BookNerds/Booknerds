@@ -32,9 +32,9 @@
 		<div class="text-box">
 			<h1> Get Started</h1>
 			<div id="button-div">
-				<a href="pages/search.php" class="hero-btn">Find Books</a>
-				<a href="pages/checkout.php" class="hero-btn">View Cart</a>
-				<a href="pages/reports.php" class="hero-btn">View Reports</a>
+				<a href="search.php" class="hero-btn">Find Books</a>
+				<a href="checkout.php" class="hero-btn">View Cart</a>
+				<a href="reports.php" class="hero-btn">View Reports</a>
 			</div>
 		</div>
     </div>
