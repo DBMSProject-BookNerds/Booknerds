@@ -3,15 +3,6 @@
     padding: 0;
 }
 
-.header {
-    min-height: 100vh;
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-size: cover;
-    position: relative;
-}
-
 #nav-icon {
     width: 150px;
     padding: auto;
@@ -19,8 +10,8 @@
 
 nav {
     display: flex;
-    padding: 2% 6%;
     margin: auto;
+    padding: 20px 20px 0px;
     justify-content: space-between;
     align-items: center;
     font-weight: 500;
@@ -91,6 +82,17 @@ nav img {
 	align-items: center;
 }
 
+#button-div{
+	margin: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#button-div a {
+	margin-right: 20px;
+}
+
 .text-box {
     width: 90%;
     color: #494949;
@@ -98,30 +100,27 @@ nav img {
     background-color: rgba(228, 194, 171, 0.259);
     text-align: center;
     padding: 30px;
+    margin-bottom: 20px;
     font-family: Garamond, serif;
 }
 
 .text-box h1 {
-    font-size: 70px;
+    font-size: 50px;
     border-radius: 20px;
     padding: 20px;
-    width: 50%;
+    width: fit-content;
     margin: auto;
     background-color: rgb(228, 194, 171);
 }
 
-.text-box h3 {
-    font-size: 30px;
-    color: #021100;
-}
-
 .text-box p {
-    margin: 10px 0 40px;
+    margin: 20px 0 40px;
     font-size: 20px;
     font-weight: 600;
     color: #494949;
     width: 100%;
-    text-align: Left;
+    padding: 10px;
+    text-align: center;
 }
 
 .hero-btn {

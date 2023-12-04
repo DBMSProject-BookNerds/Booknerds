@@ -1,7 +1,7 @@
 <?php
 //this report shows the customers who bought the book "The Daughter of Time" in September 2023.
 function report1() {
-    $conn = mysqli_connect("localhost", "root", "default", "");
+    $conn = @mysqli_connect("localhost", "test", "test", "");
     mysqli_select_db($conn, 'BookNerds');
     $query = "select customer.firstName, customer.lastName, customer.postalCode 
               from customer, orders, orderdetails, book

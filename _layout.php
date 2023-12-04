@@ -13,7 +13,7 @@
 <body>
     <div id="header">
         <nav>
-            <a href="index.html"><img id="nav-icon" src="../images/Nerd.png"></a>
+            <a href="index.php"><img id="nav-icon" src="../images/Nerd.png"></a>
             <div class="nav-links" id="navLinks">
                 <i class="fa fa-times" onclick="hideMenu()"></i>
                 <ul>

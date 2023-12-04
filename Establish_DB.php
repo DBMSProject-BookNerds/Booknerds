@@ -3,19 +3,30 @@
         //boolean for whether or not to create data.
         $create_data = false;
         
+        $string_result = "";
+        
         // establish the database
         // change permissions as needed
-        $conn=mysqli_connect("localhost", "root", "default","");
-
+        try
+        {
+        $conn = @mysqli_connect("localhost", "test", "test","");
+        $string_result .= " connected successfully";
+		}
+		catch (exception $e) {
+            $string_result .= $e->getmessage();
+            return $string_result;
+        }
+        
+        
         //$drop_db = "DROP DATABASE BookNerds"; /////// delete these after
         //mysqli_query($conn, $drop_db); /////     delete these after*/
         if (!$conn)
         {	
-            echo " Cannot connect" . mysqli_error();
+            $string_result .= "| Cannot connect" . mysqli_error($conn);
         }
         else
         {
-            echo "Connection created\n";
+            $string_result .= "| Connection created";
         }
 
         $sql="CREATE DATABASE if not exists BookNerds";
@@ -24,7 +35,7 @@
             //create the database if it does not exist
             if (mysqli_query($conn, $sql))
             {
-            echo "Database created\n";
+            $string_result .= "| Database created\n";
             mysqli_select_db($conn, 'BookNerds');
 
             // create the tables
@@ -103,13 +114,14 @@
                     try{
                         if (mysqli_query($conn, $value))
                             {
-                            echo "Table created\n";
+                            $string_result .= "| Table created\n";
                             $create_data = true;
                             }
                     }
                     //catch the exception of creating a table
                     catch (exception $e){
-                        echo $e->getmessage();
+                        $string_result .= "| " . $e->getmessage();
+                        return $string_result;
                     }
                 }
             }
@@ -117,13 +129,17 @@
         //catch the exception of creating the database
         catch (exception $e)
         {
-            echo $e->getmessage();
+            $string_result .= "| " . $e->getmessage();
+            return $string_result;
         }
 
         //create test data as needed.
-        if($create_data)
+        if($create_data){
             insert_dummy_data($conn);
-        
+        }
+        mysqli_close($conn);
+
+		return $string_result;
     }
 
     function insert_dummy_data($conn){
@@ -138,7 +154,8 @@
             mysqli_query($conn, $sql_insert_customer);
         }
         catch (exception $e){
-            echo $e->getmessage();
+            $string_result .= "| " . $e->getmessage();
+            return $string_result;
         }
 
         // insert into bookstore
@@ -151,7 +168,8 @@
             mysqli_query($conn, $sql_insert_bookstore);
         }
         catch (exception $e){
-            echo $e->getmessage();
+            $string_result .= "| " . $e->getmessage();
+            return $string_result;
         }
 
         // insert into orders
@@ -167,7 +185,8 @@
             mysqli_query($conn, $sql_insert_orders);         
         }
         catch (exception $e){
-            echo $e->getmessage();
+            $string_result .= "| " . $e->getmessage();
+            return $string_result;
         }
 
         // insert into author
@@ -181,7 +200,8 @@
             mysqli_query($conn, $sql_insert_author);
         }
         catch (exception $e){
-            echo $e->getmessage();
+            $string_result .= "| " . $e->getmessage();
+            return $string_result;
         }
 
         // insert into genre
@@ -196,7 +216,8 @@
             mysqli_query($conn, $sql_insert_genre);
         }
         catch (exception $e){
-            echo $e->getmessage();
+            $string_result .= "| " . $e->getmessage();
+            return $string_result;
         }
         
         // insert into book
@@ -218,7 +239,8 @@
             mysqli_query($conn, $sql_insert_book);
         }
         catch (exception $e){
-            echo $e->getmessage();
+            $string_result .= "| " . $e->getmessage();
+            return $string_result;
         }
         
         // insert into order details
@@ -235,7 +257,8 @@
             mysqli_query($conn, $sql_insert_orderDetails);
         }
         catch (exception $e){
-            echo $e->getmessage();
+            $string_result .= "| " . $e->getmessage();
+            return $string_result;
         }
     }
 ?>
