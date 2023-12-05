@@ -101,7 +101,7 @@
 						var cell1 = newRow.insertCell(0);
 						var cell2 = newRow.insertCell(1);
 						cell1.innerHTML = item.name;
-						cell2.innerHTML = item.totalSales;
+						cell2.innerHTML = "$" + item.totalSales;
 					});
 				})
 				.catch(error => console.error('Error:', error));
@@ -128,7 +128,7 @@
 						var cell1 = newRow.insertCell(0);
 						var cell2 = newRow.insertCell(1);
 						cell1.innerHTML = item.storeName;
-						cell2.innerHTML = item.totalSales;
+						cell2.innerHTML = "$" + item.totalSales;
 					});
 				})
 				.catch(error => console.error('Error:', error));
@@ -155,7 +155,7 @@
 						var cell1 = newRow.insertCell(0);
 						var cell2 = newRow.insertCell(1);
 						cell1.innerHTML = item.name;
-						cell2.innerHTML = item.totalSpent;
+						cell2.innerHTML = "$" + item.totalSpent;
 					});
 				})
 				.catch(error => console.error('Error:', error));
