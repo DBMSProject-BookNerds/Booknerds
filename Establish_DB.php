@@ -202,7 +202,7 @@
         (8,\"Stephen\",\"King\",\"This guy got movies out the wazoo on his books. Pretty successful!\"),
         (9,\"Jane\",\"Austen\",\"I think we had to read this for school I'm not sure idr.\"),
         (10,\"Margaret\",\"Mitchell\",\"Margaret Mitchell more like Margaret Sheeshell SHEEE\"),
-        (11,\"Frank\",\"Herbert\",\"Franklin Patrick Herbert Jr. (October 8, 1920 – February 11, 1986) was an American science fiction author best known for the 1965 novel Dune and its five sequels. Though he became famous for his novels, he also wrote short stories and worked as a newspaper journalist, photographer, book reviewer, ecological consultant, and lecturer.\")";
+        (11,\"Frank\",\"Herbert\",\"Franklin Patrick Herbert Jr. (October 8, 1920 - February 11, 1986) was an American science fiction author best known for the 1965 novel Dune and its five sequels. Though he became famous for his novels, he also wrote short stories and worked as a newspaper journalist, photographer, book reviewer, ecological consultant, and lecturer.\")";
 
         try{
             mysqli_query($conn, $sql_insert_author);
