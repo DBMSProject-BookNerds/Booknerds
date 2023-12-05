@@ -9,7 +9,7 @@
         // change permissions as needed
         try
         {
-        $conn = @mysqli_connect("localhost", "test", "test","");
+        $conn = @mysqli_connect("localhost",  "root", "default", "");
         $string_result .= " connected successfully";
 		}
 		catch (exception $e) {

@@ -1,7 +1,52 @@
 <?php
 //this report shows the customers who bought the book "The Daughter of Time" in September 2023.
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $requestData = json_decode(file_get_contents('php://input'), true);
+
+    if (isset($requestData['action'])) {
+        $action = $requestData['action'];
+
+        switch ($action) {
+            case 'report1':
+                // Call the report1 function
+                $data = report1();
+                echo json_encode($data);
+                exit(); // Ensure no additional content is sent
+                break;
+			case 'report2':
+                // Call the report1 function
+                $data = report2();
+                echo json_encode($data);
+                exit(); // Ensure no additional content is sent
+                break;
+			case 'report3':
+                // Call the report1 function
+                $data = report3();
+                echo json_encode($data);
+                exit(); // Ensure no additional content is sent
+                break;
+			case 'report4':
+                // Call the report1 function
+                $data = report4();
+                echo json_encode($data);
+                exit(); // Ensure no additional content is sent
+                break;
+
+            // Handle other actions as needed
+
+            default:
+                echo json_encode(['error' => 'Invalid action']);
+                exit(); // Ensure no additional content is sent
+        }
+    } else {
+        echo json_encode(['error' => 'Action not provided']);
+        exit(); // Ensure no additional content is sent
+    }
+}
+
 function report1() {
-    $conn = @mysqli_connect("localhost", "test", "test", "");
+    $conn = @mysqli_connect("localhost",  "root", "default", "");
     mysqli_select_db($conn, 'BookNerds');
     $query = "select customer.firstName, customer.lastName, customer.postalCode 
               from customer, orders, orderDetails, book
@@ -10,31 +55,26 @@ function report1() {
               book.bookID = orderDetails.bookID and
               book.title = 'The Daughter of Time' and
               orders.orderDate between '2023-09-01' and '2023-09-30')";
-    $result= mysqli_query($conn, $query);
-    echo "<html><body><h1>Report 1</h1></body></html>
-    <table border='1'>
-    <tr>
-    <th> Customer First Name </th>
-    <th> Customer Last Name </th>
-    <th> Postal Code </th>
-    </tr>";
-    while($row = mysqli_fetch_array($result))
-    {
-    echo "<tr>";
-    echo "<td>" . $row["firstName"] . "</td>";
-    echo "<td>" . $row["lastName"] . "</td>";
-    echo "<td>" . $row["postalCode"] . "</td>";
-    echo "</tr>";
+    $result = mysqli_query($conn, $query);
+
+    $data = array();
+
+    while ($row = mysqli_fetch_array($result)) {
+        $data[] = array(
+            'firstName' => $row["firstName"],
+            'lastName' => $row["lastName"],
+            'postalCode' => $row["postalCode"]
+        );
     }
-    echo "</table>";
-    echo "";
-    echo "Generated a report for all Customers who ordered The Daughter of Time in the month of September 2023.";
+
     mysqli_close($conn);
+
+    return $data;
 }
 
 //this report shows the highest selling authors in our database
 function report2() {
-    $conn = mysqli_connect("localhost", "test", "test", "");
+    $conn = mysqli_connect("localhost",  "root", "default", "");
     mysqli_select_db($conn, 'BookNerds');
     $query = "select CONCAT(author.firstName, ' ', author.lastName) as 'Name', SUM(book.price * orderDetails.quantity) as 'Total Sales'
     from orderDetails, author, book
@@ -42,26 +82,25 @@ function report2() {
     book.authorID = author.authorID)
     group by CONCAT(author.firstName, ' ', author.lastName)
     order by SUM(book.price) desc;";
-    $result= mysqli_query($conn, $query);
+    $result = mysqli_query($conn, $query);
 
-    echo "<table border='1'>
-    <tr>
-    <th> Author Name </th>
-    <th> Sales </th>
-    </tr>";
-    while($row = mysqli_fetch_array($result)){
-        echo "<tr>";
-        echo "<td>" . $row["Name"] . "</td>";
-        echo "<td>" . $row["Total Sales"] . "</td>";
-        echo "</tr>";
+    $data = array();
+
+    while ($row = mysqli_fetch_array($result)) {
+        $data[] = array(
+            'name' => $row["Name"],
+            'totalSales' => $row["Total Sales"]
+        );
     }
-    echo "</table>";
+
     mysqli_close($conn);
+
+    return $data;
 }
 
 // this report shows the highest selling bookstores in our database
 function report3() {
-    $conn = mysqli_connect("localhost", "test", "test", "");
+    $conn = mysqli_connect("localhost",  "root", "default", "");
     mysqli_select_db($conn, 'BookNerds');
     $query = "select bookstore.bookstoreName as 'Store Name', SUM(book.price * orderDetails.quantity) as 'Total Sales'
     from orderDetails, book, bookstore
@@ -71,62 +110,45 @@ function report3() {
     group by bookstore.bookstoreName
     order by SUM(book.price * orderDetails.quantity) desc;";
 
-    $result= mysqli_query($conn, $query);
-    echo "<table border='1'>
-    <tr>
-    <th> Store Name </th>
-    <th> Sales </th>
-    </tr>";
-    while($row = mysqli_fetch_array($result)){
-        echo "<tr>";
-        echo "<td>" . $row["Store Name"] . "</td>";
-        echo "<td>" . $row["Total Sales"] . "</td>";
-        echo "</tr>";
+    $result = mysqli_query($conn, $query);
+
+    $data = array();
+
+    while ($row = mysqli_fetch_array($result)) {
+        $data[] = array(
+            'storeName' => $row["Store Name"],
+            'totalSales' => $row["Total Sales"]
+        );
     }
-    echo "</table>";
+
     mysqli_close($conn);
+
+    return $data;
 }
 
 // this report shows the total revenue of the company, as well as the largest contributors towards it.
 function report4() {
-    $conn = mysqli_connect("localhost", "test", "test", "");
+    $conn = mysqli_connect("localhost",  "root", "default", "");
     mysqli_select_db($conn, 'BookNerds');
 
-    $total_revenue = "select SUM(totalPrice) as 'Total Revenue'
-    from orders;";
-    $result = mysqli_query($conn, $total_revenue);
-    echo "<table border='1'>
-    <tr>
-    <th> Total Revenue </th>
-    </tr>";
-    while($row = mysqli_fetch_array($result)){
-        echo "<tr>";
-        echo "<td>" . $row['Total Revenue'] . "</td>";
-    }
-    echo "</table>";
-
-    $biggest_nerds_query = "select CONCAT(customer.firstName,' ',customer.lastName) as 'Name', SUM(totalPrice) as 'Total Spent'
+	$biggest_nerds_query = "select CONCAT(customer.firstName,' ',customer.lastName) as 'Name', SUM(totalPrice) as 'Total Spent'
     from orders, customer
     where(orders.customerID = customer.customerID)
     group by (orders.customerID)
     order by SUM(totalPrice) desc;";
-    $result = mysqli_query($conn, $biggest_nerds_query);
-    echo "<table border='1'>
-    <tr>
-    <th> Name </th>
-    <th> Total Spent </th>
-    </tr>";
-    while($row = mysqli_fetch_array($result)){
-        echo "<tr>";
-        echo "<td>" . $row['Name'] . "</td>";
-        echo "<td>" . $row['Total Spent'] . "</td>";
+    $result2 = mysqli_query($conn, $biggest_nerds_query);
+	
+	$data = array();
+	
+    while ($row = mysqli_fetch_array($result2)) {
+        $data[] = array(
+            'name' => $row["Name"],
+            'totalSpent' => $row["Total Spent"]
+        );
     }
-    echo "</table>";
+    
     mysqli_close($conn);
-}
 
-if (isset($_POST['report1'])){report1();}
-elseif (isset($_POST['report2'])) {report2();}
-elseif (isset($_POST['report3'])) {report3();}
-else {report4();}
+    return $data;
+}
 ?>

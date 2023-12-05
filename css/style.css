@@ -46,6 +46,41 @@ nav img {
 
 }
 
+#report-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#report-buttons-div {
+	display: block;
+	width: 40%;
+	text-align: right;
+}
+
+
+#report1-button, report2-button, report3-button, report4-button{
+	margin-top:2%;
+	font-size: 20px;
+	font-family: Garamond, serif;
+}
+
+#table-div{
+	display: flex;
+	width: 50%;
+	text-align: right;
+	margin-left: 30px;
+}
+
+#table-div table{
+	margin-right: 20px;
+}
+
+#table-div tr, th, td{
+	font-size: 20px;
+	padding: 10px;
+}
+
 #search-form {
 	display: flex;
 	justify-content: space-between;
@@ -56,7 +91,7 @@ nav img {
   font-family: Garamond, serif;
 }
 
-#search-button{
+.text-box button{
 	margin-top:2%;
 	font-size: 20px;
 	font-family: Garamond, serif;
