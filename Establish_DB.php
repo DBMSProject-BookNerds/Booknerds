@@ -218,7 +218,7 @@
         (2,\"Comedy\"),
         (3,\"Horror\"),
         (4,\"Romance\"),
-        (5,\"Sciency Fiction\")";
+        (5,\"Science Fiction\")";
 
         try{
             mysqli_query($conn, $sql_insert_genre);
