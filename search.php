@@ -1,6 +1,6 @@
 <?php include '_layout.php';
 if (!empty($_POST)) {
-    $conn = mysqli_connect("localhost", "root", "default", "");
+    $conn = mysqli_connect("localhost",  "root", "default", "");
     mysqli_select_db($conn, 'BookNerds');
     $query = search();
     $result= mysqli_query($conn, $query);
