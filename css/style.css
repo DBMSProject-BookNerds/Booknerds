@@ -97,6 +97,13 @@ nav img {
 	font-family: Garamond, serif;
 }
 
+#search-button {
+	margin-top:2%;
+	font-size: 20px;
+	font-family: Garamond, serif;
+}
+
+
 .nav-links ul li::after {
     content: '';
     width: 0%;
