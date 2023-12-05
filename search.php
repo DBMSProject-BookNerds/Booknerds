@@ -4,16 +4,17 @@ if (!empty($_POST)) {
     mysqli_select_db($conn, 'BookNerds');
     $query = search();
     $result= mysqli_query($conn, $query);
-    echo "<html><body><h1>Results</h1></body></html>
-    <table border='1'>
-    <tr>
-    <th> BookID </th>
-    <th> Title </th>
-    <th> Author First Name </th>
-    <th> Author Last Name </th>
-    <th> Genre </th>
-    <th> ISBN </th>
-    </tr>";
+    echo "<div id=\"centered-div\"><h1>Results</h1></div>
+    <div id=\"centered-div\">
+        <table border='1'>
+        <tr>
+            <th> BookID </th>
+            <th> Title </th>
+            <th> Author First Name </th>
+            <th> Author Last Name </th>
+            <th> Genre </th>
+            <th> ISBN </th>
+        </tr>";
     while($row = mysqli_fetch_array($result))
     {
     echo "<tr>";
@@ -25,7 +26,7 @@ if (!empty($_POST)) {
     echo "<td>" . $row["ISBN"] . "</td>";
     echo "</tr>";
     }
-    echo "</table>";
+    echo "</table></div>";
     mysqli_close($conn);
 }
 else {
