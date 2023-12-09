@@ -23,7 +23,8 @@
         while($row = mysqli_fetch_array($result)){
             echo '<div> ' . $row['Field'] . ': <input type="text" name="' . $row['Field'].'"/></div>'; 
         }
-        echo '<input type="submit" name="insert"/>';
+        echo '<input type="submit" name="insert,' . $value .'"/>';
+        // insert,table_name
         echo '</form>';
 
         //form for deleting data
