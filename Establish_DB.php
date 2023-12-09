@@ -65,7 +65,7 @@
                             (orderID int NOT NULL AUTO_INCREMENT,
                             customerID int,
                             FOREIGN KEY (customerID) REFERENCES customer(customerID),
-                            orderDate date,
+                            orderDate varchar(10),
                             totalPrice decimal(10, 2),
                             PRIMARY KEY(orderID))",
 
@@ -90,7 +90,7 @@
                             FOREIGN KEY (authorID) REFERENCES author(authorID),
                             bookstoreID int,
                             FOREIGN KEY (bookstoreID) REFERENCES bookstore(bookstoreID),
-                            publicationDate date,
+                            publicationDate varchar(10),
                             genreID int,
                             FOREIGN KEY (genreID) REFERENCES genre(genreID),
                             isbn varchar(30),
