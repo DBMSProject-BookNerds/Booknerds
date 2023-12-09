@@ -34,7 +34,7 @@
         while($row = mysqli_fetch_array($result)){
             echo '<div> ' . $row['Field'] . ': <input type="text" name="' . $row['Field'].'"/></div>'; 
         }
-        echo '<input type="submit" name="delete"/>';
+        echo '<input type="submit" name="delete,' . $value . '"/>';
         echo '</form>';
 
         //form for modifying data
@@ -52,7 +52,7 @@
         while($row = mysqli_fetch_array($result)){
             echo '<div> ' . $row['Field'] . ': <input type="text" name="' . $row['Field'].'"/></div>'; 
         }
-        echo '<input type="submit" name="modify"/>';
+        echo '<input type="submit" name="modify,' . $value . '"/>';
         echo '</form>';
     }
 ?>
