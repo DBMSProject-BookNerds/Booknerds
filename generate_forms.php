@@ -4,7 +4,10 @@
     elseif (isset($_POST['book'])) {create_data_form('book');}
     elseif (isset($_POST['author'])) {create_data_form('author');}
     elseif (isset($_POST['genre'])) {create_data_form('genre');}
-    else {create_data_form('orders');}
+    elseif (isset($_POST['order'])) {create_data_form('orders');}
+    else{
+        ogale_special_request();
+    }
 
     function create_data_form($value){
         //TODO: Pass $value to the button, so that we know which table we are manipulating with the form.
@@ -54,5 +57,39 @@
         }
         echo '<input type="submit" name="modify,' . $value . '"/>';
         echo '</form>';
+    }
+
+    function ogale_special_request(){
+        $conn = @mysqli_connect("localhost", "root", "default","");
+        mysqli_select_db($conn, 'BookNerds');
+
+        $query = "select customer.firstName, customer.email, bookstore.bookstoreName, CONCAT(author.firstName, ' ', author.lastName) as 'AuthorName', orders.totalPrice
+        from customer, bookstore, book, orders, orderdetails, author, genre
+        where(
+            customer.customerID = orders.customerID and
+            orderdetails.orderID = orders.orderID and
+            orderdetails.bookID = book.bookID and
+            orderdetails.bookstoreID = bookstore.bookstoreID and
+            author.authorID = book.authorID and
+            book.genreID = genre.genreID and
+            
+            genre.genreName = 'Mystery'
+        )
+        order by totalPrice desc;
+        ";
+
+        $result = mysqli_query($conn, $query);
+        echo "<table border = 1>";
+        while($row = mysqli_fetch_array($result)){ 
+            echo "<tr>";
+            echo "<td>" . $row["firstName"] . "</td>";
+            echo "<td>" . $row["email"] . "</td>";
+            echo "<td>" . $row["bookstoreName"] . "</td>";
+            echo "<td>" . $row["AuthorName"] . "</td>";
+            echo "<td>" . $row["totalPrice"] . "</td>";
+            echo "</tr>";
+            }
+    
+        echo "</table>";
     }
 ?>
