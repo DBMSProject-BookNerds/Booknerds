@@ -14,7 +14,7 @@
         //This needs to be done because we are passing the data along.
 
         //get a connection
-        $conn = @mysqli_connect("localhost", "root", "default","");
+        $conn = @mysqli_connect("localhost", "test", "test","");
         mysqli_select_db($conn, 'BookNerds');
 
         $get_columns = ("show columns in " . $value . ";");
@@ -60,7 +60,7 @@
     }
 
     function ogale_special_request(){
-        $conn = @mysqli_connect("localhost", "root", "default","");
+        $conn = @mysqli_connect("localhost", "test", "test","");
         mysqli_select_db($conn, 'BookNerds');
 
         $query = "select customer.firstName, customer.email, bookstore.bookstoreName, CONCAT(author.firstName, ' ', author.lastName) as 'AuthorName', orders.totalPrice

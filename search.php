@@ -37,9 +37,9 @@
 	</div>
 </div>
 
-<?php 
+<?php
     if(!empty($_POST)) {
-        $conn = mysqli_connect("localhost",  "root", "default", "");
+        $conn = mysqli_connect("localhost",  "test", "test", "");
         mysqli_select_db($conn, 'BookNerds');
         $query = search();
         $result= mysqli_query($conn, $query);
