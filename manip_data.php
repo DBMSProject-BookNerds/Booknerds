@@ -105,7 +105,6 @@
             
         }
         $query = $query . ');';
-        echo $query;
         
         //delete the data with the $query
         try{
@@ -220,8 +219,6 @@
         }
 
         $query = $query . ');';
-        echo count($all_keys) - $num_cols;
-        echo $query;
 
         try{
             mysqli_query($conn, $query);
