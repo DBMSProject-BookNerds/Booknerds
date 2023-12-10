@@ -19,9 +19,8 @@
                 <ul>
                     <li><a href="index.php">HOME</a></li>
                     <li><a href="search.php">SEARCH</a></li>
-                    <li><a href="checkout.php">CHECKOUT</a></li>
                     <li><a href="reports.php">REPORTS</a></li>
-                    <li><a href="forms.php">WORK WITH DATA</a></li>
+                    <li><a href="forms.php">DATA FORMS</a></li>
                 </ul>
             </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>

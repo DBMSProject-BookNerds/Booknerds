@@ -33,7 +33,7 @@
 			<h1> Get Started</h1>
 			<div id="button-div">
 				<a href="search.php" class="hero-btn">Find Books</a>
-				<a href="checkout.php" class="hero-btn">View Cart</a>
+				<a href="forms.php" class="hero-btn">Data Forms</a>
 				<a href="reports.php" class="hero-btn">View Reports</a>
 			</div>
 		</div>
