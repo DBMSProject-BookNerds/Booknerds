@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 function report1() {
-    $conn = @mysqli_connect("localhost",  "root", "default", "");
+    $conn = @mysqli_connect("localhost",  "test", "test", "");
     mysqli_select_db($conn, 'BookNerds');
     $query = "select customer.firstName, customer.lastName, customer.postalCode 
               from customer, orders, orderDetails, book
@@ -74,7 +74,7 @@ function report1() {
 
 //this report shows the highest selling authors in our database
 function report2() {
-    $conn = mysqli_connect("localhost",  "root", "default", "");
+    $conn = mysqli_connect("localhost",  "test", "test", "");
     mysqli_select_db($conn, 'BookNerds');
     $query = "select CONCAT(author.firstName, ' ', author.lastName) as 'Name', SUM(book.price * orderDetails.quantity) as 'Total Sales'
     from orderDetails, author, book
@@ -100,7 +100,7 @@ function report2() {
 
 // this report shows the highest selling bookstores in our database
 function report3() {
-    $conn = mysqli_connect("localhost",  "root", "default", "");
+    $conn = mysqli_connect("localhost",  "test", "test", "");
     mysqli_select_db($conn, 'BookNerds');
     $query = "select bookstore.bookstoreName as 'Store Name', SUM(book.price * orderDetails.quantity) as 'Total Sales'
     from orderDetails, book, bookstore
@@ -128,7 +128,7 @@ function report3() {
 
 // this report shows the total revenue of the company, as well as the largest contributors towards it.
 function report4() {
-    $conn = mysqli_connect("localhost",  "root", "default", "");
+    $conn = mysqli_connect("localhost",  "test", "test", "");
     mysqli_select_db($conn, 'BookNerds');
 
 	$biggest_nerds_query = "select CONCAT(customer.firstName,' ',customer.lastName) as 'Name', SUM(totalPrice) as 'Total Spent'

@@ -1,5 +1,5 @@
 <?php
-    $conn = @mysqli_connect("localhost", "root", "default","");
+    $conn = @mysqli_connect("localhost", "test", "test","");
     mysqli_select_db($conn, 'BookNerds');
 
     foreach ($_POST as $key => $value) {
