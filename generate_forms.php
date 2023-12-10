@@ -50,7 +50,7 @@
         echo '<h4> Where </h4>';
         $result = mysqli_query($conn, $get_columns);
         while($row = mysqli_fetch_array($result)){
-            echo '<div> ' . $row['Field'] . ': <input type="text" name="' . $row['Field'].'"/></div>'; 
+            echo '<div> ' . $row['Field'] . ': <input type="text" name="' . $row['Field'].'where"/></div>'; 
         }
         echo '<input type="submit" name="modify,' . $value . '"/>';
         echo '</form>';
